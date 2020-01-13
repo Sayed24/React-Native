@@ -7,14 +7,14 @@ import Loading from './LoadingComponent';
 
 const mapStateToProps = state => {
     return {
-      partners: state.partners
+      partners: state.partners 
     };
 };
 
 function Mission() {
     return(
         <Card title="Our Mission">
-            <Text>
+            <Text style={{margin: 10}}>
                 We present a curated database of the best campsites in the vast woods and 
                 backcountry of the World Wide Web Wilderness. We increase access to the 
                 advanture for the public while promoting safe and respectful use of resources.
