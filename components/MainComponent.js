@@ -6,6 +6,7 @@ import Contact from './ContactComponent';
 import Reservation from './ReservationComponent';
 import Favorites from './FavoritesComponent';
 import CampsiteInfo from './CampsiteInfoComponent';
+import LoginTab from './LoginComponent';
 import { View, Platform, StyleSheet, Text, ScrollView, Image } from 'react-native';
 import { createStackNavigator, createDrawerNavigator, DrawerItems } from 'react-navigation';
 import { Icon } from 'react-native-elements';
@@ -19,6 +20,37 @@ const mapDispatchToProps = {
     fetchPromotions,
     fetchPartners
 };
+
+
+const LoginTabNavigator = createStackNavigator(
+    {
+        LoginTab: { 
+            screen: LoginTab,
+            navigationOptions: ({navigation}) => ({
+                headerLeft: <Icon
+                    name='Login'
+                    type='font-awesome'
+                    iconStyle={styles.stackIcon}
+                    onPress={() => navigation.toggleDrawer()}
+                />
+            })
+        },
+        CampsiteInfo: { screen: CampsiteInfo }
+    },
+    {
+        initialRouteName: 'LoginTab',
+        navigationOptions: {
+            headerStyle: {
+                backgroundColor: '#5637DD'
+            },
+            headerTintColor: '#fff',
+            headerTitleStyle: {
+                color: '#fff'
+            }
+        }
+    }
+);
+
 
 const DirectoryNavigator = createStackNavigator(
     {
@@ -185,6 +217,18 @@ const CustomDrawerContentComponent = props => (
 
 const MainNavigator = createDrawerNavigator(
 {
+    LoginTab: { screen: LoginTabNavigator,
+            navigationOptions: {
+                drawerIcon: ({tintColor}) => (
+                    <Icon
+                        name='login'
+                        type='font-awesome'
+                        fontSize={24}
+                        color={tintColor}
+                    />
+                )
+            }
+        },
         Home: { screen: HomeNavigator,
             navigationOptions: {
                 drawerIcon: ({tintColor}) => (
